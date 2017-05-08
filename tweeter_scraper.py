@@ -9,7 +9,7 @@ def menu():
 	sane = 1
 	while sane == 1:
 		print "[ - ] Please enter absolute path to output directory: "
-		in_path = raw_input()+"\\tweeter_scraper_out"
+		in_path = raw_input()+"/tweeter_scraper_out"
 		if os.path.exists(in_path):
 			sane = 0
 		else:
@@ -40,7 +40,7 @@ def main(in_path):
 			time.sleep(tmp_t)
 			print "[ - ] Communication error, sleeping "+str(tmp_t)+" seconds..."
 		html = resp.readlines()
-		out_log = in_path+"\\out_log.txt"
+		out_log = in_path+"/out_log.txt"
 		out_log_fo = open(out_log, 'a+')
 		out_log_items = out_log_fo.readlines()
 		
@@ -78,8 +78,8 @@ def main(in_path):
 					start_raw_cut = html.find('<textarea id="paste_code" class="paste_code" name="paste_code" onkeydown="return catchTab(this,event)">')+103
 					end_raw_cut = html[start_raw_cut:len(html)].find('</textarea>')+start_raw_cut
 					html = html[start_raw_cut:end_raw_cut]
-				time_det = str(time.strftime("%m%d%y_%H%M%S"))
-				dump_file = in_path+"\\"+time_det+'.txt'
+				time_det = str(time.strftime("%y%m%d_%H%M%S"))
+				dump_file = in_path+"/"+time_det+'.txt'
 				dump_file_fo = open(dump_file, 'w')
 				dump_file_fo.write(html)
 				dump_file_fo.close()
